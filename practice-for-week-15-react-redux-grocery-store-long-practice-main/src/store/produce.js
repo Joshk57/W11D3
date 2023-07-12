@@ -34,3 +34,5 @@ export function populateProduce(){
 
     })
 }
+
+export const getAllProduce = (state) => Object.values(state.produce);

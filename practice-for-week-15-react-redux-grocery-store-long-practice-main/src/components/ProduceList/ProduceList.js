@@ -3,13 +3,15 @@ import './ProduceList.css';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../store/cart';
+import { getAllProduce } from '../../store/produce';
 
 function ProduceList() {
   // const dispatch = useDispatch()
-  const produce = useSelector(state => state.produce);
+  // const produce = useSelector(state => state.produce);
 
-  const produceArr = Object.values(produce);
+  // const produceArr = Object.values(produce);
 
+  const produceArr = useSelector(getAllProduce);
   // const toggleLike = (e) => {
   //   e.preventDefault();
   //   debugger
