@@ -10,7 +10,7 @@ function ProduceList() {
 
   const produceArr = Object.values(produce);
 
-  // const handleSubmit = (e) => {
+  // const toggleLike = (e) => {
   //   e.preventDefault();
   //   debugger
   //   dispatch(addToCart(e.target.key))

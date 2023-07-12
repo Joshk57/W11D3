@@ -1,7 +1,22 @@
 import { useState } from "react";
 
 export function cartReducer(state = {}, action) {
+    let newObj = Object.assign({}, state)
     switch(action.type) {
+        case RESETCART:
+            newObj = {};
+            return newObj;
+        case DECREMENTCART:
+            if (state[action.id].count === 1){
+                delete newObj[action.id]
+                return newObj;
+            } else {
+                newObj[action.id].count -= 1;
+                return newObj; 
+            }
+        case REMOVEFROMCART:
+            delete newObj[action.id]
+            return newObj;
         case ADDCART:
             let count = 1
             let newKey = action.id.toString()
@@ -26,6 +41,29 @@ export function cartReducer(state = {}, action) {
 }
 
 const ADDCART = 'cart/ADDCART'
+const REMOVEFROMCART = 'cart/REMOVEFROMCART'
+const DECREMENTCART = 'cart/DECREMENTCART'
+const RESETCART = 'cart/RESETCART'
+
+export function resetCart(){
+    return({
+        type:RESETCART
+    })
+}
+
+export function decrementCart(produceId){
+    return ({
+        type: DECREMENTCART,
+        id: produceId
+    })
+}
+
+export function removeFromCart(produceId){
+    return({
+        type: REMOVEFROMCART,
+        id: produceId
+    })
+}
 
 export function addToCart(produceId) {
     // const [count, setCount] = useState(0)

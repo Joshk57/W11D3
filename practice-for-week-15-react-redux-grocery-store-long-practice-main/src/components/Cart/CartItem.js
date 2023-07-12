@@ -1,7 +1,34 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addToCart, removeFromCart, decrementCart } from '../../store/cart';
+
 
 function CartItem({ item }) {
   const [count, setCount] = useState(item.count);
+
+  const dispatch = useDispatch()
+  
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    dispatch(removeFromCart(item.id))
+  }
+
+  const handleIncrement = (e) => {
+    e.preventDefault()
+
+    dispatch(addToCart(item.id))
+  }
+
+  const handleDecrement = (e) => {
+    e.preventDefault()
+
+    dispatch(decrementCart(item.id))
+  }
+  // useEffect((e) => {
+  //   dispatch(removeFromCart(e.item.id))
+  // },[handleSubmit])
+
 
   useEffect(() => {
     setCount(item.count);
@@ -15,17 +42,17 @@ function CartItem({ item }) {
           type="number"
           value={count}
         />
-        <button
+        <button onClick={handleIncrement}
           className="cart-item-button"
         >
           +
         </button>
-        <button
+        <button onClick={handleDecrement}
           className="cart-item-button"
         >
           -
         </button>
-        <button
+        <button onClick={handleSubmit}
           className="cart-item-button"
         >
           Remove
