@@ -1,12 +1,20 @@
 import ProduceDetails from './ProduceDetails';
 import './ProduceList.css';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../store/cart';
 
 function ProduceList() {
+  // const dispatch = useDispatch()
   const produce = useSelector(state => state.produce);
 
   const produceArr = Object.values(produce);
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   debugger
+  //   dispatch(addToCart(e.target.key))
+  // }
   return (
     <>
       <h2>All produce</h2>
